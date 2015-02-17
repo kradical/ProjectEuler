@@ -1,4 +1,4 @@
-# find the sum of the even terms
+# find the sum of the even terms of the fibonacci series up to 4 million
 value = 0
 number = 2
 
