@@ -7,6 +7,23 @@
 # right, or diagonally) in the 20×20 grid?
 
 
+def product(array, x, y):
+    forward_product = 0
+    vertical_product = 0
+    bot_right_diagonal = 0
+    top_right_diagonal = 0
+    if y < 17:
+        forward_product = array[x][y]*array[x][y+1]*array[x][y+2]*array[x][y+3]
+    if x < 17:
+        vertical_product = array[x][y]*array[x+1][y]*array[x+2][y]*array[x+3][y]
+    if x < 17 and y < 17:
+        bot_right_diagonal = array[x][y]*array[x+1][y+1]*array[x+2][y+2]*array[x+3][y+3]
+    if x < 17 and y > 2:
+        top_right_diagonal = array[x][y]*array[x+1][y-1]*array[x+2][y-2]*array[x+3][y-3]
+
+    return max(forward_product, vertical_product, bot_right_diagonal, top_right_diagonal)
+
+
 def test():
     teststring="08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08\
                 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00\
@@ -28,9 +45,16 @@ def test():
                 20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16\
                 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54\
                 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"
-    stringlist = ['red', 'yellow', 'blue']
-    stringlist.sort()
-    print(stringlist)
+    teststring2 = teststring.split("        ")
+    by_row = [x.split(" ") for x in teststring2 if x != '']
+    final_data = [[int(y) for y in row] for row in by_row]
+    current_max = 0
+    for x in range(20):
+        for y in range(20):
+            new_max = product(final_data, x, y)
+            if new_max > current_max:
+                current_max = new_max
+    print(current_max)
 
 if __name__ == "__main__":
     test()
