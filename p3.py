@@ -7,7 +7,7 @@ import timeit
 
 
 def test():
-    prime_factors = [-317584931803]
+    prime_factors = [-28]
     while prime_factors:
         current_divisor = 2
         current_factor = -heapq.heappop(prime_factors)
@@ -18,7 +18,8 @@ def test():
                 heapq.heappush(prime_factors, int(-(current_factor/current_divisor)))
                 break
             elif current_divisor == sqrt_current_factor+1:
-                # print(current_factor)
+                print(current_factor)
+                print(prime_factors)
                 return
             current_divisor += 1
 
