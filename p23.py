@@ -10,3 +10,27 @@
 # even though it is known that the greatest number that cannot be expressed as 
 # the sum of two abundant numbers is less than this limit Find the sum of all the
 # positive integers which cannot be written as the sum of two abundant numbers.
+
+def isabundant(num):
+    divisors = {1}
+    for x in range(2, int(num**0.5) + 1):
+        if num%x == 0:
+            divisors.add(x)
+            divisors.add(num//x)
+    if sum(divisors) > num:
+        return True
+    return False
+
+def main():
+    abundantset = set([])
+    finalset = {x for x in range(20162)}
+    for x in range(12, 20162):
+        if isabundant(x):
+            abundantset.add(x)
+            for y in abundantset:
+                finalset.discard(y+x)
+            
+    print(sum(finalset))
+    
+if __name__ == '__main__':
+    main()
