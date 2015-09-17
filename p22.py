@@ -14,6 +14,7 @@ def main():
     result.sort()
     alpha_sum = 0
     for ndx, name in enumerate(result):
+        print(ndx, name)
         alpha_sum += (ndx+1) * sum(ord(c) - 64 for c in name)
     print(alpha_sum)
 
