@@ -14,17 +14,20 @@
 def spiralcount(num):
     ndx = 1
     step = 2
+    cntr = 0
     diagonal_sum = 1
-    print(num**2)
     while ndx < num**2:
-        print(ndx)
         ndx += step
-        if 
+        diagonal_sum += ndx
+        
+        cntr += 1
+        if cntr % 4 == 0:
+            step += 2
     return diagonal_sum
     
 
 def main():
-    print(spiralcount(5))
+    print(spiralcount(1001))
     
 if __name__ == '__main__':
     main()
